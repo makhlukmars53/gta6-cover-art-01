@@ -1,12 +1,135 @@
-html, body { margin: 0; height: 100%; background: #f2f0f4; color: #1d1b22; font: 15px/1.4 system-ui, sans-serif; }
-.app { display: flex; gap: 32px; align-items: center; justify-content: center; height: 100%; padding: 24px; box-sizing: border-box; }
-.controls { display: flex; flex-direction: column; gap: 14px; width: 280px; }
-.controls h1 { margin: 0; font-size: 28px; }
-.controls p { margin: 0; color: #5c5866; }
-label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
-input[type=text] { font: inherit; padding: 8px; border: 1px solid #c9c4d1; border-radius: 6px; }
-button { font: inherit; font-weight: 700; padding: 10px; border: 0; border-radius: 6px; background: #1d1b22; color: #fff; cursor: pointer; }
-canvas { width: min(70vh, 60vw); height: min(70vh, 60vw); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
-body.shot-cover .controls { display: none; }
-body.shot-cover .app { padding: 0; }
-body.shot-cover canvas { width: 100vw; height: 100vh; box-shadow: none; }
+/* Editor styling for the cover maker: dark stage, neon accents, plain
+   system fonts. The cover itself is drawn on canvas (see src/render.js);
+   this file only styles the editor around it. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #12081f;
+  color: #f2ecff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  height: 100vh;
+}
+
+.controls {
+  padding: 20px 22px 32px;
+  background: #1a0b2e;
+  border-right: 1px solid #3a1c5c;
+  overflow-y: auto;
+}
+
+.controls h1 {
+  margin: 0 0 4px;
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  text-shadow: 3px 3px 0 #ff2e88;
+}
+
+.tagline { margin: 0 0 8px; color: #c9b8e8; }
+
+.controls h2 {
+  margin: 20px 0 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #ff7a1a;
+}
+
+.controls label { display: block; margin: 8px 0; }
+
+.controls input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border: 1px solid #5b3a86;
+  border-radius: 6px;
+  background: #241239;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.controls input[type="range"] { width: 100%; }
+
+.row { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+
+button {
+  padding: 8px 12px;
+  border: 1px solid #5b3a86;
+  border-radius: 6px;
+  background: #2b1650;
+  color: #f2ecff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover { background: #3a1f68; }
+button.selected { background: #ff2e88; border-color: #ff2e88; color: #fff; }
+button:disabled { opacity: 0.35; cursor: default; }
+
+button.primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #ff7a1a;
+  border-color: #ff7a1a;
+  color: #1c0f2e;
+}
+
+button.primary:hover { background: #ff9a4d; }
+
+.file-label { cursor: pointer; }
+.file-label input { margin-top: 4px; }
+
+.hint { color: #a894c9; font-size: 13px; }
+#status { min-height: 1.4em; color: #7df9ff; }
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 46, 136, 0.18), transparent 55%),
+    radial-gradient(ellipse at 75% 80%, rgba(34, 230, 255, 0.12), transparent 55%),
+    #12081f;
+}
+
+#preview {
+  max-width: min(92%, 760px);
+  max-height: 82vh;
+  border-radius: 4px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  cursor: grab;
+  touch-action: none;
+}
+
+#preview:active { cursor: grabbing; }
+
+/* Screenshot mode: the cover alone, filling the frame. */
+body.shot-cover { background: #000; }
+body.shot-cover .controls,
+body.shot-cover .stage .hint { display: none; }
+body.shot-cover .app { display: block; height: auto; min-height: 0; }
+body.shot-cover .stage { padding: 0; background: #000; }
+body.shot-cover #preview {
+  max-width: none;
+  max-height: none;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+}

@@ -1,5 +1,1 @@
-[
-  { "name": "1-cover.jpg", "query": "?shot=cover&photo=pier&caption=Sunset%20Heist", "w": 1080, "h": 1080 },
-  { "name": "2-editor.jpg", "query": "?shot=editor&photo=boulevard&caption=Boulevard%20Queen", "w": 1280, "h": 720 },
-  { "name": "3-cover.jpg", "query": "?shot=cover&photo=boulevard&caption=Boulevard%20Queen", "w": 1080, "h": 1080 }
-]
+[{"h":720,"name":"1-cover.jpg","query":"?shot=cover&photo=pier&caption=Sunset%20Heist&subtitle=Neon%20Nights&layout=hero&grade=sunset&size=1920x1080","w":1280},{"h":860,"name":"2-editor.jpg","query":"?shot=editor&photo=boulevard&caption=Boulevard%20Queen&subtitle=Downtown%20Lights&layout=hero&grade=sunset&size=1080x1080","w":1280},{"h":1024,"name":"3-cover-square.jpg","query":"?shot=cover&photo=boulevard&caption=Boulevard%20Queen&subtitle=Downtown%20Lights&layout=grid&grade=neon&size=1080x1080","w":1024},{"h":1280,"name":"4-cover-portrait.jpg","query":"?shot=cover&photo=pier&caption=Pier%20Lights&subtitle=After%20Dark&layout=duo&grade=pink&size=1080x1350","w":1024}]
